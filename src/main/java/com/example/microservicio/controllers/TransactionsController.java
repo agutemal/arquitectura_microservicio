@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,12 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.Date;
-
 import com.example.microservicio.entities.Transactions;
 
 
 @RestController
 @RequestMapping("/transactions")
+@Validated
 public class TransactionsController {
     
     @Autowired
@@ -30,14 +31,11 @@ public class TransactionsController {
     }
 
     @PostMapping("/createNewTransactions")
-    public ResponseEntity<Object> createNewAccount(@RequestBody Transactions newTransactions) {
+    public ResponseEntity<Object> createNewAccount(@Validated @RequestBody Transactions newTransactions) {
         newTransactions.setDateTransactions(new Date());
-        try {
-            Transactions newTransactionsCreate=transactionsService.createNewTransactions(newTransactions);
-            return ResponseEntity.ok(newTransactionsCreate);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error interno en el servidor");
-        }
+        Transactions newTransactionsCreate=transactionsService.createNewTransactions(newTransactions);
+        return ResponseEntity.ok(newTransactionsCreate);
+
     }
     
     @PutMapping("/updateTransactions/{id}")

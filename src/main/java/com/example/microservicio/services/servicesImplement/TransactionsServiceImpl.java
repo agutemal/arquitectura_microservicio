@@ -1,5 +1,4 @@
 package com.example.microservicio.services.servicesImplement;
-import com.example.microservicio.entities.Client;
 import com.example.microservicio.entities.Transactions;
 import com.example.microservicio.repository.TransactionsRepository;
 import com.example.microservicio.services.TransactionsService;
