@@ -25,9 +25,10 @@ public class Transactions {
     private Date dateTransactions;       //Fecha movimiento
     private String typeTransactions;     //Tipo movimiento 
     @NotNull
-    private BigDecimal balance;          //valor
+    private BigDecimal balance;          //saldo
     @NotNull          
-    private BigDecimal amount;           //saldo
+    private BigDecimal amount;           //valor
+    private boolean stateTransactions;
 
     @ManyToOne
     @JoinColumn(name = "account_id")

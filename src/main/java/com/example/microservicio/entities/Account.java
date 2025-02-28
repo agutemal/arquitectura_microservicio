@@ -23,6 +23,7 @@ public class Account {
     private String accountType;            //tipo cuenta
     private BigDecimal openingBalance;     //saldo inicial
     private String accountState;           //estado
+    private BigDecimal currentBalance;     //saldo actual
 
 
     @ManyToOne
